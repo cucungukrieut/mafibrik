@@ -933,7 +933,7 @@ class Product extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
 
     /**
      * Create Product entity from raw data.
-     *
+     *  Implemet dari Abstact Entity untuk import data
      * @throws \Exception
      * @return bool Result of operation.
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)

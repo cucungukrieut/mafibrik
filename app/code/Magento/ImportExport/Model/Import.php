@@ -415,6 +415,7 @@ class Import extends \Magento\ImportExport\Model\AbstractModel
 
         $this->addLogComment(__('Begin import of "%1" with "%2" behavior', $this->getEntity(), $this->getBehavior()));
 
+        //start import
         $result = $this->processImport();
 
         if ($result) {
@@ -441,6 +442,7 @@ class Import extends \Magento\ImportExport\Model\AbstractModel
 
     /**
      * Proses import data ke database
+     * dengan validasi terlebih dahulu
      * @return bool
      */
     protected function processImport()
@@ -451,7 +453,9 @@ class Import extends \Magento\ImportExport\Model\AbstractModel
             $this->getData(self::FIELD_NAME_ALLOWED_ERROR_COUNT)
         );
         try {
+            // dari Entity\AbstactEntity.php
             $this->_getEntityAdapter()->importData();
+
         } catch (\Exception $e) {
             $errorAggregator->addError(
                 \Magento\ImportExport\Model\Import\Entity\AbstractEntity::ERROR_CODE_SYSTEM_EXCEPTION,

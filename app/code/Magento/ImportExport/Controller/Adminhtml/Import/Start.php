@@ -53,7 +53,7 @@ class Start extends ImportResultController
 
             //process import csv to DB
             $this->importModel->setData($data);
-            $this->importModel->importSource();
+            $this->importModel->importSource(); // => Import.php
 
             $errorAggregator = $this->importModel->getErrorAggregator();
             if ($this->importModel->getErrorAggregator()->hasToBeTerminated()) {

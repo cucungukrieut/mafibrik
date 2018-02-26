@@ -300,7 +300,7 @@ abstract class AbstractEntity
 
     /**
      * Import data rows.
-     *
+     * di dioverride product.php
      * @abstract
      * @return boolean
      */
@@ -583,6 +583,7 @@ abstract class AbstractEntity
      */
     public function importData()
     {
+        //masih di class ini
         return $this->_importData();
     }
 
