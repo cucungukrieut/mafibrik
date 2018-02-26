@@ -440,6 +440,7 @@ class Import extends \Magento\ImportExport\Model\AbstractModel
     }
 
     /**
+     * Proses import data ke database
      * @return bool
      */
     protected function processImport()

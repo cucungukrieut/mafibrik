@@ -49,10 +49,12 @@ class Start extends ImportResultController
             $resultBlock
                 ->addAction('show', 'import_validation_container')
                 ->addAction('innerHTML', 'import_validation_container_header', __('Status'))
-                ->addAction('hide', ['edit_form', 'upload_button', 'messages']);
+                ->addAction('hide', ['edit_form', 'upload_button', 'messages']);  //hide element where finish
 
+            //process import csv to DB
             $this->importModel->setData($data);
             $this->importModel->importSource();
+
             $errorAggregator = $this->importModel->getErrorAggregator();
             if ($this->importModel->getErrorAggregator()->hasToBeTerminated()) {
                 $resultBlock->addError(__('Maximum error count has been reached or system error is occurred!'));
