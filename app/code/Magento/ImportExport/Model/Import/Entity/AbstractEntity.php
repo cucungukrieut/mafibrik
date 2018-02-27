@@ -512,9 +512,7 @@ abstract class AbstractEntity
      */
     public function getBehavior()
     {
-        if (!isset(
-            $this->_parameters['behavior']
-        ) ||
+        if (!isset($this->_parameters['behavior']) ||
             $this->_parameters['behavior'] != \Magento\ImportExport\Model\Import::BEHAVIOR_APPEND &&
             $this->_parameters['behavior'] != \Magento\ImportExport\Model\Import::BEHAVIOR_REPLACE &&
             $this->_parameters['behavior'] != \Magento\ImportExport\Model\Import::BEHAVIOR_DELETE
@@ -583,7 +581,7 @@ abstract class AbstractEntity
      */
     public function importData()
     {
-        //masih di class ini
+        //masih di class ini (import tombol)
         return $this->_importData();
     }
 

@@ -1300,7 +1300,7 @@ class Product extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
                     $this->_connection->quoteInto('product_id IN (?)', $delProductId)
                 );
             }
-            if ($categoriesIn) {
+            if ($categoriesIn) { // if add or update
                 $this->_connection->insertOnDuplicate($tableName, $categoriesIn, ['product_id', 'category_id']);
             }
         }
@@ -1320,13 +1320,13 @@ class Product extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
         $this->countItemsCreated += count($entityRowsIn);
         $this->countItemsUpdated += count($entityRowsUp);
 
-        if (!$entityTable) {
+        if (!$entityTable) { // if table no null
             $entityTable = $this->_resourceFactory->create()->getEntityTable();
         }
-        if ($entityRowsUp) {
+        if ($entityRowsUp) { // if update
             $this->_connection->insertOnDuplicate($entityTable, $entityRowsUp, ['updated_at']);
         }
-        if ($entityRowsIn) {
+        if ($entityRowsIn) { //if new product boolean
             $this->_connection->insertMultiple($entityTable, $entityRowsIn);
 
             $select = $this->_connection->select()->from(
@@ -1492,16 +1492,17 @@ class Product extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
-    protected function _saveProducts()
+    protected function php_saveProducts()
     {
         $priceIsGlobal = $this->_catalogData->isPriceGlobal();
         $productLimit = null;
         $productsQty = null;
 
         while ($bunch = $this->_dataSourceModel->getNextBunch()) {
-            $entityRowsIn = [];
-            $entityRowsUp = [];
+            $entityRowsIn = []; // row insert new product
+            $entityRowsUp = []; //row update product
             $attributes = [];
+            echo 'ini adalah ';
             $this->websitesCache = [];
             $this->categoriesCache = [];
             $tierPrices = [];
