@@ -1492,7 +1492,7 @@ class Product extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
-    protected function php_saveProducts()
+    protected function _saveProducts()
     {
         $priceIsGlobal = $this->_catalogData->isPriceGlobal();
         $productLimit = null;
@@ -1520,7 +1520,7 @@ class Product extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
                     $this->getErrorAggregator()->addRowToSkip($rowNum);
                     continue;
                 }
-                $rowScope = $this->getRowScope($rowData);
+                $rowScope = $this->getRowScope($rowData);//rowData = list row from csv
 
                 $rowSku = $rowData[self::COL_SKU];
 
