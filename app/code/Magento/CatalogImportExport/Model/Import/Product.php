@@ -1512,6 +1512,7 @@ class Product extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
             $prevAttributeSet = null;
             $existingImages = $this->getExistingImages($bunch);
 
+            // rownum => (sama dengan lebih besar dari) rowdata
             foreach ($bunch as $rowNum => $rowData) {
                 if (!$this->validateRow($rowData, $rowNum)) {
                     continue;
@@ -1522,7 +1523,7 @@ class Product extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
                 }
                 $rowScope = $this->getRowScope($rowData);//rowData = list row from csv
 
-                $rowSku = $rowData[self::COL_SKU];
+                $rowSku = $rowData[self::COL_SKU]; // definition SKU
 
                 if (null === $rowSku) {
                     $this->getErrorAggregator()->addRowToSkip($rowNum);
